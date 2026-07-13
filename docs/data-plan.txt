@@ -1,0 +1,2 @@
+Users: name, email, passwordHash, role (admin or user)
+Metrics: revenue (by month), users (count by month), churn (percentage)
