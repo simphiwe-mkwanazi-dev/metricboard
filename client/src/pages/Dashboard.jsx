@@ -4,18 +4,20 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } 
 
 function Dashboard() {
   const [data, setData] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     axios.get('http://localhost:5000/api/metrics').then((res) => setData(res.data));
   }, []);
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', background: darkMode ? '#0A2540' : 'white', color: darkMode ? 'white' : 'black', minHeight: '100vh' }}>
       <div style={{ width: '200px', background: '#0A2540', color: 'white', height: '100vh', padding: '20px' }}>
         Sidebar
       </div>
       <div style={{ flex: 1, padding: '20px' }}>
         <h2>Dashboard</h2>
+        <button onClick={() => setDarkMode(!darkMode)}>Toggle Dark Mode</button>
         <h3>Revenue</h3>
         <LineChart width={500} height={250} data={data}>
           <CartesianGrid stroke="#ccc" />
